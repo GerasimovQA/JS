@@ -1,0 +1,25 @@
+{
+  "name": "web_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GerasimovQA/JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GerasimovQA/JS/issues"
+  },
+  "homepage": "https://github.com/GerasimovQA/JS#readme",
+  "dependencies": {
+    "chromedriver": "^107.0.3",
+    "geckodriver": "^3.2.0",
+    "selenium-webdriver": "^4.6.0"
+  }
+}
