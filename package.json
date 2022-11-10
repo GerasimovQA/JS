@@ -4,7 +4,7 @@
   "description": "",
   "main": "Test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha  --no-timeouts --parallel --jobs 3 --reporter mochawesome -require mochawesome/register"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   "dependencies": {
     "chromedriver": "^107.0.3",
     "geckodriver": "^3.2.0",
+    "mocha": "^10.1.0",
+    "mochawesome": "^7.1.3",
     "selenium-webdriver": "^4.6.0"
+  },
+  "devDependencies": {
+    "mocha-param": "^2.0.1"
   }
 }
