@@ -1,30 +1,31 @@
 {
-  "name": "web_js",
-  "version": "1.0.0",
-  "description": "",
-  "main": "Test.js",
+  "name": "mocha-webdriver-page-objects-example",
+  "version": "0.0.1",
+  "description": "A stab at using page objects with mocha and webdriverjs.",
   "scripts": {
-    "test": "mocha  --no-timeouts --parallel --jobs 3 --reporter mochawesome -require mochawesome/register"
+    "test": "mocha --no-timeouts --parallel --jobs 3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "selenium-webdriver": "^3.5.0"
+  },
+  "dependencies": {
+    "chromedriver": "^107.0.3",
+    "selenium": "^2.20.0"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GerasimovQA/JS.git"
+    "url": "git+https://github.com/Matt-B/mocha-webdriver-page-objects-example.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GerasimovQA/JS/issues"
+    "url": "https://github.com/Matt-B/mocha-webdriver-page-objects-example/issues"
   },
-  "homepage": "https://github.com/GerasimovQA/JS#readme",
-  "dependencies": {
-    "chromedriver": "^107.0.3",
-    "geckodriver": "^3.2.0",
-    "mocha": "^10.1.0",
-    "mochawesome": "^7.1.3",
-    "selenium-webdriver": "^4.6.0"
-  },
-  "devDependencies": {
-    "mocha-param": "^2.0.1"
-  }
+  "homepage": "https://github.com/Matt-B/mocha-webdriver-page-objects-example#readme"
 }

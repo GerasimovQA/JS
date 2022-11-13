@@ -1,37 +1,41 @@
-const {By,Key,Builder} = require("selenium-webdriver");
-const { Asserter, asserters } = require("wd");
-require("chromedriver");
-const assert = require("assert");
+var newSimplePage = require('./page-objects/page');
+var newGlobalePage = require('./page-objects/globalPage');
+var newDriver = require('./driver');
+var { driver } = require('selenium-webdriver');
+var test = require('selenium-webdriver/testing');
 
-describe("Group two", function(){
-        it("Test one", async function(){
-                var searchString = "Automation testing with Selenium";
- 
-                //To wait for browser to build and launch properly
-                let driver = await new Builder().forBrowser("chrome").build();
-          
-                 //To fetch http://google.com from the browser with our code.
-                 await driver.get("http://google.com");
-                     
-                 //To send a search query by passing the value in searchString.
-                 await driver.findElement(By.name("q")).sendKeys(searchString,Key.RETURN);
-          
-                 //Verify the page title and print it
-                 var title = await driver.getTitle();
-                 console.log('Title is:',title);
-                 assert.strictEqual(title, searchString+" - Google Search")
-          
-                 //It is always a safe practice to quit the browser after execution
-                 await driver.quit();
-        })
-}
-);
+test.describe('Google Search2', function () {
+    this.timeout(15000);
+    var testsss = [
+        { searchString: "Chrome", url: "http://google.com" },
+        { searchString: "Firefox", url: "http://google.com" },
+        { searchString: "Safari", url: "http://google.com" }
+    ];
+
+    test.beforeEach(function (done) {
+        driver = new newDriver.newDriver();
+        console.log("driver is started");
+        done();
+    });
+
+    test.afterEach(function (done) {
+        if (driver)
+            driver.quit();
+        console.log("driver is closed");
+        done();
+    });
+      testsss.forEach(function (parameters) {
+        test.it("Parametrized - " + parameters.searchString, function (done) {
+            var newGP = new newGlobalePage.NewGlobalPage;
+            newGP.open(driver, parameters.url);
+            var newSP = new newSimplePage.newSimplePage();
+            newSP.typeSearchQuery(parameters.searchString);
+            newSP.clickFirstIlementInPopUpList();
+            done();
+        });
+      });
+});
 
 
 
 
-
- 
- 
-
- 
