@@ -4,12 +4,11 @@ var newDriver = require('./driver');
 var { driver } = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 
-test.describe('Google Search2', function () {
+test.describe('Google Search1', function () {
     this.timeout(15000);
     var testsss = [
-        { searchString: "Chrome", url: "http://google.com" },
-        { searchString: "Firefox", url: "http://google.com" },
-        { searchString: "Safari", url: "http://google.com" }
+        { url: "http://google.com", short_request: "666", long_request: "666 angel number meaning", exp_title: "666 angel number meaning - Google Search"},
+        { url: "http://google.com", short_request: "777", long_request: "7777 meaning", exp_title: "7777 meaning - Google Search"},
     ];
 
     test.beforeEach(function (done) {
@@ -17,7 +16,6 @@ test.describe('Google Search2', function () {
         console.log("driver is started");
         done();
     });
-
     test.afterEach(function (done) {
         if (driver)
             driver.quit();
@@ -25,12 +23,13 @@ test.describe('Google Search2', function () {
         done();
     });
       testsss.forEach(function (parameters) {
-        test.it("Parametrized - " + parameters.searchString, function (done) {
+        test.it("Parametrized - " + parameters.short_request, function (done) {
             var newGP = new newGlobalePage.NewGlobalPage;
             newGP.open(driver, parameters.url);
             var newSP = new newSimplePage.newSimplePage();
-            newSP.typeSearchQuery(parameters.searchString);
-            newSP.clickFirstIlementInPopUpList();
+            newGP.enterText(newSP.input,parameters.short_request);
+            newGP.clickFirstIlementInList(newSP.list, parameters.long_request);
+            newGP.check_title(parameters.exp_title)
             done();
         });
       });
