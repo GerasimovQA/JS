@@ -11,6 +11,16 @@ class NewGlobalPage {
 
     logo = [this.typeOfLocator.xpath, ".//div[@class='logo']"]
 
+    waitForElement(element) {
+        var waitTimeout = 15000;
+        driver.wait(until.elementLocated(element[0](element[1]), waitTimeout))
+    }
+
+    waitForListOfElements(elements) {
+        var waitTimeout = 15000;
+        driver.wait(until.elementsLocated(elements[0](elements[1]), waitTimeout))
+    }
+
     open(webdriver, url) {
         this.driver = webdriver
         driver = this.driver
@@ -19,42 +29,19 @@ class NewGlobalPage {
 
     enterText(element, text) {
         this.waitForElement(element);
-        if (element[0] === By.xpath) {
-            console.log("enter text by xpath to - " + element[1])
-            driver.findElement(By.xpath(element[1])).sendKeys(text)
-        } if (element[0] === By.name) {
-            console.log("enter text by name to - " + element[1])
-            driver.findElement(By.name(element[1])).sendKeys(text)
-        }
+        driver.findElement(element[0](element[1])).sendKeys(text)
+
     }
 
     clickWebElement(element) {
         this.waitForElement(element);
-        if (element[0] === By.xpath) {
-            console.log("click element by xpath to - " + element[1])
-            driver.findElement(By.xpath(element[1])).click();
-        } if (element[0] === By.name) {
-            console.log("click element by name to - " + element[1])
-            driver.findElement(By.name(element[1])).click();
-        }
-    }
-
-    waitForElement(element) {
-        var waitTimeout = 15000;
-        if (element[0] === By.xpath) {
-            console.log("wait for element by xpath - " + element[1])
-            driver.wait(until.elementLocated(By.xpath(element[1]), waitTimeout))
-        } if (element[0] === By.name) {
-            console.log("wait for element by name - " + element[1])
-            driver.wait(until.elementLocated(By.name(element[1]), waitTimeout))
-        }
+        driver.findElement(element[0](element[1])).click();
     }
 
     clickFirstIlementInList(listOfLocators, result) {
-        var waitTimeout = 15000;
-        driver.wait(until.elementsLocated(By.xpath(listOfLocators[1]), waitTimeout))
+        this.waitForListOfElements(listOfLocators)
 
-        driver.findElements(By.xpath(listOfLocators[1])).then(function (elements) {
+        driver.findElements(listOfLocators[0](listOfLocators[1])).then(function (elements) {
             elements.forEach(function (element) {
                 element.getText().then(function (text) {
                     console.log("element: ", text)
