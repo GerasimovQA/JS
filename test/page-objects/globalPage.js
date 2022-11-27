@@ -58,7 +58,7 @@ class NewGlobalPage {
 
     check_title(expectedTitle) {
         this.waitForElement(this.logo)
-        var actualTitle = driver.getTitle().then(function (actualTitle) {
+        driver.getTitle().then(function (actualTitle) {
             console.log("Check: " + actualTitle + " = " + expectedTitle)
             assert.equal(actualTitle, expectedTitle, "Title is wrong")
         })
