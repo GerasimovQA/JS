@@ -38,22 +38,16 @@ class NewGlobalPage {
         driver.findElement(element[0](element[1])).click();
     }
 
-    clickFirstIlementInList(listOfLocators, result) {
+    async clickFirstIlementInList(listOfLocators, result) {
         this.waitForListOfElements(listOfLocators)
+        const listOfElements = await driver.findElements(listOfLocators[0](listOfLocators[1]))
 
-        driver.findElements(listOfLocators[0](listOfLocators[1])).then(function (elements) {
-            elements.forEach(function (element) {
-                element.getText().then(function (text) {
-                    console.log("element: ", text)
-                    if (text === result) {
-                        element.click()
-                        console.log("Chain is broken")
-                    }
-                }).catch(console => {
-                    return
-                })
-            })
-        })
+        for (let elem in listOfElements) {
+            if (await listOfElements[elem].getText() === result) {
+                listOfElements[elem].click()
+                return
+            }
+        }
     }
 
     check_title(expectedTitle) {

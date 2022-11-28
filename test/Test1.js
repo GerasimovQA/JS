@@ -7,7 +7,7 @@ var test = require('selenium-webdriver/testing');
 test.describe('Google Search1', function () {
     this.timeout(15000);
     var testsss = [
-        { url: "http://google.com", short_request: "666", long_request: "666 angel number meaning", exp_title: "666 angel number meaning - Google Search"},
+        { url: "http://google.com", short_request: "666", long_request: "6666 show", exp_title: "6666 show - Google Search"},
         { url: "http://google.com", short_request: "777", long_request: "7777 meaning", exp_title: "7777 meaning - Google Search"},
     ];
 
